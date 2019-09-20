@@ -9,6 +9,21 @@ use File::Temp qw(tempfile tempdir);
 
 START: #Start Label
 
+print "If you have not, please run this script with sudo!\n";
+
+print "Input pwd of img file:\n";
+my $loc = <STDIN>;
+
+print "Reinput pwd of img file:\n";
+my $loc2 = <STDIN>;
+
+if ($loc ne $loc2){
+	print "\n\nDifferent pwds inputted!\n\n";
+	goto START;
+}
+
+
+
 my $init = `dmesg | grep -v UFW | tail`; #filter out UFW mlogs
 my $change;
 
@@ -35,7 +50,14 @@ $change =~ s/^\s+|\s+$//g; #trim whitespace
 
 print "\nLocation of Inserted Drive:\n".$change."\n";
 
+#assumes that location is /dev/$change
 
 
+system(dd bs-4M if=${loc} of=/dev/${change} conv=fdatasync status=progress);
+
+
+print "Complete! Restarting program...\n";
+
+goto START;
 
 
