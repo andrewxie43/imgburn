@@ -34,8 +34,14 @@ print "\n\nPlease insert device\n\n";
 while (`ls /dev/sd*` eq $init){
 }
 
+my @patterns = split($init, "\n");
+
 $change = `ls /dev/sd*`;
-$change =~ s/\Q$init//;
+
+foreach(@patterns){
+	$change =~ s/$_//;
+}
+
 $change =~ /(\/dev\/sd[a-z][0-9])/;
 $change = $1;
 
