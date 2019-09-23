@@ -50,7 +50,7 @@ print "\nLocation of Inserted Drive:\n".$change."\n";
 #assumes that location is /dev/$change
 
 
-system('dd bs=4m if=${loc} of=${change}');
+system('dd if=${loc} of=${change}');
 
 
 print "\a\a\aComplete! Please remove device\n";
