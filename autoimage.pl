@@ -24,43 +24,33 @@ if ($loc ne $loc2){
 
 MAIN:
 
-my $init = `dmesg | grep -v UFW | tail`; #filter out UFW mlogs
+my $init = `ls /dev/sd*`; 
 my $change;
 
 
-print "\nCurrent DMESG:\n".$init;
+print "\nCurrent /dev/sd*:\n".$init;
 
 print "\n\nPlease insert device\n\n";
-while (`dmesg | grep -v UFW | tail` eq $init){
+while (`ls /dev/sd*` eq $init){
 }
-$change = `dmesg | grep -v UFW | tail`;
 
-$init =~ s/.*\n//; #trim first two lines off init
-$init =~ s/.*\n//;
-
-$change =~ s/\Q$init//; #removes all lines from log before inserting drive
-
-print "changex2:".$change."\n";
-
-$change =~ s/.*\n//; #remove first line with no "sda" info
-
-print "change before trim:".$change."\n";
-
-$change =~ s/[ [0-9.]*] //;
-$change =~ s/:.*//; #isolate drive name (usually sda?)
-
-$change =~ s/^\s+|\s+$//g; #trim whitespace
-
+$change = `ls /dev/sd*`;
+$change =~ s/\Q$init//;
+$change =~ /(\/dev\/sd[a-z][0-9])/;
+$change = $1;
 
 print "\nLocation of Inserted Drive:\n".$change."\n";
 
 #assumes that location is /dev/$change
 
 
-system('dd bs=4M if=${loc} of=/dev/${change} conv=fdatasync status=progress');
+system('dd bs=4M if=${loc} of=${change} conv=fdatasync status=progress');
 
 
-print "\a\a\aComplete! Restarting program...\n";
+print "\a\a\aComplete! Please remove device\n";
+
+while (`ls /dev/sd*` ne $init){
+}
 
 goto MAIN;
 
