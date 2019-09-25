@@ -10,3 +10,7 @@ Current script is designed to run on linux.
 1. Plug in SD > USB Adapter WITHOUT SD CARD
 2. Run program, follow instructions
 3. Insert SD card when prompted with "Insert Device"
+
+## Notes
+1. Please remember to update the image name in the script every time a new kernel is uploaded!
+2.
