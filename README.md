@@ -12,5 +12,4 @@ Current script is designed to run on linux.
 3. Insert SD card when prompted with "Insert Device"
 
 ## Notes
-1. Please remember to update the image name in the script every time a new kernel is uploaded!
-2.
+
