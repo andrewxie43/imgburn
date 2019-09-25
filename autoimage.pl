@@ -52,7 +52,7 @@ print "\nLocation of Inserted Drive:\n".$change."\n";
 
 my $ddcom = "dd bs=32M if=".$loc." | pv |  of=".$change." conv=fdatasync status=progress oflag=direct";
 
-system($ddcom);
+system($ddcom." > /dev/null 2>&1");
 
 
 print "\a\a\aComplete! Please remove device\n";
