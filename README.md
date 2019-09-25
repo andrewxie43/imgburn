@@ -5,6 +5,9 @@ Written for the Dos Pueblos Engineering Academy in an attempt to automate mass S
 
 Current script is designed to run on linux. 
 
+## Dependencies
+1. pv - sudo apt install pv
+
 
 ## Procedures
 1. Plug in SD > USB Adapter WITHOUT SD CARD

@@ -50,7 +50,7 @@ print "\nLocation of Inserted Drive:\n".$change."\n";
 
 #assumes that location is /dev/$change
 
-my $ddcom = "dd bs=32M if=".$loc." of=".$change." conv=fdatasync status=progress oflag=direct";
+my $ddcom = "dd bs=32M if=".$loc." | pv |  of=".$change." conv=fdatasync status=progress oflag=direct";
 
 system($ddcom);
 
