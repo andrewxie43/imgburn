@@ -2,6 +2,7 @@
 
 use warnings;
 use autodie;
+use strict;
 use File::Temp qw(tempfile tempdir);
 
 #Implements dmesg, so sd card can be swapped without removing the usb adapter.
@@ -49,7 +50,7 @@ print "\nLocation of Inserted Drive:\n".$change."\n";
 
 #assumes that location is /dev/$change
 
-my $ddcom = "dd bs=4M if=".$loc." of=".$change." conv=fdatasync status=progress";
+my $ddcom = "dd bs=32M if=".$loc." of=".$change." conv=fdatasync status=progress oflag=direct";
 
 system($ddcom);
 
